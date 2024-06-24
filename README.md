@@ -1,46 +1,46 @@
-# Getting Started with Create React App
+React-এর useReducer হুক ব্যবহারের মাধ্যমে স্টেট ম্যানেজ করার একটি বাংলা উদাহরণ নিচে দেওয়া হলো। এই উদাহরণে আমরা একটি সাধারণ কাউন্টার অ্যাপ্লিকেশন তৈরি করবো যা কাউন্ট বাড়াতে ও কমাতে পারবে।
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+প্রথমে, আমাদের একটি React কম্পোনেন্ট তৈরি করতে হবে যেখানে আমরা useReducer ব্যবহার করব।
 
-## Available Scripts
+```bash
+import React, { useReducer } from 'react';
 
-In the project directory, you can run:
+// initialState
+const initialState = { count: 0 };
 
-### `npm start`
+// reducerFunction
+function reducer(state, action) {
+  switch (action.type) {
+    case 'increment':
+      return { count: state.count + 1 };
+    case 'decrement':
+      return { count: state.count - 1 };
+    default:
+      throw new Error();
+  }
+}
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+function Counter() {
+  const [state, dispatch] = useReducer(reducer, initialState);
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+  return (
+    <div>
+      <p>counter: {state.count}</p>
+      <button onClick={() => dispatch({ type: 'increment' })}>Increment</button>
+      <button onClick={() => dispatch({ type: 'decrement' })}>Decrement</button>
+    </div>
+  );
+}
 
-### `npm test`
+export default Counter;
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+উপরে দেওয়া উদাহরণটি ব্যাখ্যা করা হলো:
 
-### `npm run build`
+**InitialState:** initialState হল আমাদের প্রাথমিক স্টেট অবজেক্ট যা count ভ্যালু শূন্য দিয়ে শুরু হয়।
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**reducer function:** reducer একটি ফাংশন যা স্টেট আপডেট করার জন্য ব্যবহৃত হয়। এটি দুইটি প্যারামিটার নেয় - বর্তমান স্টেট এবং একটি অ্যাকশন। অ্যাকশন অনুযায়ী এটি নতুন স্টেট রিটার্ন করে।
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**useReducer hook:** useReducer হুকটি reducer এবং initialState গ্রহণ করে এবং বর্তমান স্টেট এবং dispatch ফাংশন রিটার্ন করে। dispatch ফাংশনটি অ্যাকশন প্রেরণ করার জন্য ব্যবহৃত হয়।
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+এই ভাবে, useReducer ব্যবহারের মাধ্যমে আমরা স্টেট পরিচালনা করতে পারি এবং বিভিন্ন অ্যাকশনের ভিত্তিতে স্টেট আপডেট করতে পারি।
