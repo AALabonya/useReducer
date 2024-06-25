@@ -1,6 +1,8 @@
 import { ReactNode, createContext, useReducer } from "react";
 
-export const TodoContexts = createContext(null);
+export const TodoContexts = createContext<{ state: TTodo[] } | undefined>(
+  undefined
+);
 
 type TTodo = {
   id: string;
