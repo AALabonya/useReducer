@@ -12,12 +12,12 @@ type TAction = {};
 
 const initialState: TTodo[] = [];
 
-const reducer = (currenyState, action) => {
+const reducer = (currentState, action) => {
   switch (action.type) {
     case "addTodo":
-
+      return [...currentState, action.payload];
     default:
-      return currenyState;
+      return currentState;
   }
 };
 type TodoProviderProps = {
