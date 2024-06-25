@@ -28,8 +28,10 @@ type TodoProviderProps = {
 };
 const TodoProvider = ({ children }: TodoProviderProps) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+
   const info = {
-    todoTittle: `this is todo tittle` as string,
+    state,
+    dispatch,
   };
   return <TodoContexts.Provider value={info}>{children}</TodoContexts.Provider>;
 };
