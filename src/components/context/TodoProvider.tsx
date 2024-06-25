@@ -2,6 +2,16 @@ import { ReactNode, createContext } from "react";
 
 export const TodoContexts = createContext(null);
 
+const initialState = [];
+
+const reducer = (currenyState, action) => {
+  switch (action.type) {
+    case "addTodo":
+
+    default:
+      return currenyState;
+  }
+};
 type TodoProviderProps = {
   children: ReactNode;
 };
