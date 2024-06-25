@@ -4,10 +4,11 @@ import TodoForm from "./components/todo/TodoForm";
 
 function App() {
   return (
-    <div className="border-2 border-dashed m-10">
-      <TodoProvider />
-      <TodoForm />
-    </div>
+    <TodoProvider>
+      <div className="border-2 border-dashed m-10">
+        <TodoForm />
+      </div>
+    </TodoProvider>
   );
 }
 
