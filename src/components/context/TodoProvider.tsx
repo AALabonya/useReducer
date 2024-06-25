@@ -1,10 +1,15 @@
-import { createContext } from "react";
+import { ReactNode, createContext } from "react";
 
-export const TodoContexts = createContext(undefined);
+export const TodoContexts = createContext(null);
 
-export default function TodoProvider({ children }) {
+type TodoProviderProps = {
+  children: ReactNode;
+};
+const TodoProvider = ({ children }: TodoProviderProps) => {
   const info = {
-    todoTittle: `this is todo tittle`,
+    todoTittle: `this is todo tittle` as string,
   };
   return <TodoContexts.Provider value={info}>{children}</TodoContexts.Provider>;
-}
+};
+
+export default TodoProvider;
