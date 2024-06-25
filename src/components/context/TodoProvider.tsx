@@ -1,4 +1,4 @@
-import { ReactNode, createContext } from "react";
+import { ReactNode, createContext, useReducer } from "react";
 
 export const TodoContexts = createContext(null);
 
@@ -27,6 +27,7 @@ type TodoProviderProps = {
   children: ReactNode;
 };
 const TodoProvider = ({ children }: TodoProviderProps) => {
+  const [state, dispatch] = useReducer(reducer, initialState);
   const info = {
     todoTittle: `this is todo tittle` as string,
   };
