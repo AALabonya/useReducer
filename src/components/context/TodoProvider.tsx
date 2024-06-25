@@ -2,7 +2,15 @@ import { ReactNode, createContext } from "react";
 
 export const TodoContexts = createContext(null);
 
-const initialState = [];
+type TTodo = {
+  id: string;
+  title: string;
+  isCompleted: boolean;
+};
+
+type TAction = {};
+
+const initialState: TTodo[] = [];
 
 const reducer = (currenyState, action) => {
   switch (action.type) {
